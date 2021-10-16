@@ -141,9 +141,9 @@ async def add(ctx,*,message):
 @bot.command(name="comandos")
 async def comando(ctx):
     if(str(ctx.author) in admins):
-        await ctx.send(f"{ctx.author.name}, esses são os nossos comandos:\n{sinal}iniciar mostra exemplos de como se usa o bot.\n{sinal}filmes mostra os filmes disponiveis.\n{sinal}filmes_baixar 'nome do filme' lhe da o link de download do filme.\n{sinal}filmes_add 'nome do fileme' 'id do filme' adiciona um filme ao bot.\n{sinal}admin mostra a lista com todos os adminis.\n{sinal}admin_add 'nome do usuario' add um admin.\n{sinal}admin_remove 'nome do usuario' remove o usario do cargo de admin.")
+        await ctx.send(f"{ctx.author.name}, esses são os nossos comandos:\n{sinal}iniciar mostra exemplos de como se usa o bot.\n{sinal}filmes mostra os filmes disponiveis.\n{sinal}filmes_baixar 'nome do filme' lhe da o link de download do filme.\n{sinal}filmes_add 'nome do fileme' 'id do filme' adiciona um filme ao bot.\n{sinal}series para ver as seres ativas.\n{sinal}series_baixar 'nome da serie'.\n{sinal}series_add 'nome do series' 'id do series' adiciona um series ao bot.\n{sinal}admin mostra a lista com todos os adminis.\n{sinal}admin_add 'nome do usuario' add um admin.\n{sinal}admin_remove 'nome do usuario' remove o usario do cargo de admin.")
     else:
-        await ctx.send(f"{ctx.author.name}, esses são os nossos comandos:\n{sinal}iniciar mostra exemplos de como se usa o bot.\n{sinal}filmes mostra os filmes disponiveis.\n{sinal}filmes_baixar 'nome do filme' lhe da o link de download do filme.")
+        await ctx.send(f"{ctx.author.name}, esses são os nossos comandos:\n{sinal}iniciar mostra exemplos de como se usa o bot.\n{sinal}filmes mostra os filmes disponiveis.\n{sinal}filmes_baixar 'nome do filme' lhe da o link de download do filme.\n{sinal}series para ver as seres ativas.\n{sinal}series_baixar 'nome da serie'.")
 
 @bot.event
 async def on_message(message):
