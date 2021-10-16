@@ -1,0 +1,1 @@
+worker: python "bot_filmes_series.py"
