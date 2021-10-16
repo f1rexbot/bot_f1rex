@@ -72,7 +72,7 @@ async def list_adm(ctx):
         list_admins = (query('query MyQuery { admins(where: {ativo: {_eq: true}}) { nome } }'))['data']['admins']
         await ctx.send(f"{ctx.author.name}, os administradores ativos são:")
         for admm in list_admins:
-            await ctx.send(f"[*-*] ]===> {admm['nome']}")
+            await ctx.send(f"[&] ]===> {admm['nome']}")
     else:
         await ctx.send("Você precisa de autorização")
 
@@ -102,6 +102,41 @@ async def admin_remoce(ctx,*,message):
         
     else:
         await ctx.send("Você não tem autorização para remover o carco")
+
+@bot.command(name="series")
+async def seris(ctx):
+    nome = ctx.author.name
+    series = (query("query MyQuery { series(where: {ativo: { _eq: true } } ) { nome} }"))["data"]["series"]
+    await ctx.send(f" [!] {nome} [!] Esses são os series ativos:")
+    for serie in series:
+        await ctx.send(f"[+] ]===> {serie['nome']}")
+
+@bot.command(name="series_baixar")
+async def baixar(ctx,*,message):
+    nome = ctx.author.name
+    link = (query('query MyQuery { series(where: {nome: {_eq: "'+message+'" } } ) { link } }'))["data"]["series"]
+    if(len(link) != 0):
+        await ctx.send(f"[!] Aqui está o seu link {str(nome)}: {str(link[0]['link'])} [!]")
+    else:
+        await ctx.send("[!] O nome da serie está incorreto [!]")
+
+@bot.command(name="series_add")
+async def add(ctx,*,message):
+    if(str(ctx.author) in admins):
+        ad = str(message).split()
+        if(len(ad) > 1):
+            link = str(f"https://docs.google.com/uc?export=download&id={ad[1]}")
+            nr = str(ad[0]).replace('_',' ')
+            qr = 'mutation MyMutation { insert_series(objects: {link: "'+link+'", nome: "'+nr+'", ativo: true}) { returning { id } } }'
+            r = query(qr)
+            if(len(r['data']['insert_series']['returning']) > 0):
+                await ctx.send(f"[+] ]====> A serie {nr} foi adicionado com sucesso por {ctx.author.name}")
+            else:
+                await ctx.send("Erro")
+        else:
+            await ctx.send(f"Precisa passar dois parametros {sinal}add 'nome' 'id do arquivo'")
+    else:
+        await ctx.send("Você precisa ter autorização")
 
 @bot.command(name="comandos")
 async def comando(ctx):
