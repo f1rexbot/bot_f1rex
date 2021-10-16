@@ -2,7 +2,7 @@ from python_graphql_client import GraphqlClient
 from discord.ext import commands
 import discord
 
-client = GraphqlClient(endpoint="https://botteste51.herokuapp.com/v1/graphql")
+client = GraphqlClient(endpoint="https://db-f1rex.herokuapp.com/v1/graphql")
 sinal = "/"
 admins = []
 
